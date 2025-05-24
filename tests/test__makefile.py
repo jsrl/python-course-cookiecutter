@@ -1,11 +1,11 @@
+import subprocess
+from pathlib import Path
+
 import pytest
 
 
-@pytest.fixture
-
-
-def test__linting_passes():
-    ...
+def test__linting_passes(project_dir: Path):
+    subprocess.run(["make","lint-ci"], cwd=project_dir, check=True)
 
 def test__test_pass():
     ...
