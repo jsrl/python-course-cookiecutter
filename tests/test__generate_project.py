@@ -3,7 +3,10 @@ import shutil
 import subprocess
 from copy import deepcopy
 from pathlib import Path
-from typing import Dict
+from typing import (
+    Dict,
+    Generator,
+)
 
 import pytest
 
@@ -11,7 +14,7 @@ THIS_DIR = Path(__file__).parent
 PROJECT_DIR = (THIS_DIR / "../").resolve()
 
 @pytest.fixture(scope="session")
-def project_dir() -> Path:
+def project_dir() -> Generator[Path, None, None]:
     template_values = {
         "repo_name": "test-repo",
     }
@@ -20,8 +23,8 @@ def project_dir() -> Path:
     shutil.rmtree(path=generated_report_dir)
 
 def generate_project(template_values: Dict[str, str]):
-    template_values: Dict[str, str] = deepcopy(template_values)
-    cookiecutter_config = {"default_context": template_values}
+    template_values_deep: Dict[str, str] = deepcopy(template_values)
+    cookiecutter_config = {"default_context": template_values_deep}
     cookiecutter_config_fpath =  PROJECT_DIR / "tests/cookiecutter.json"
     cookiecutter_config_fpath.write_text(json.dumps(cookiecutter_config))
     cmd = [
