@@ -1,12 +1,13 @@
+import json
 import subprocess
 from pathlib import Path
-import json
 
 THIS_DIR = Path(__file__).parent
 PROJECT_DIR = (THIS_DIR / "../").resolve()
 
 def test__can_generate_project():
     """
+
     execute: `cookiecutter <template_directory> ...`
     """
     cookiecutter_config = {
@@ -23,7 +24,12 @@ def test__can_generate_project():
         "--no-input",
         "--config-file",
         str(cookiecutter_config_fpath),
-        #"--verbose"
+        "--verbose"
     ]
     print("COMMAND:"," ".join(cmd))
     subprocess.run(cmd, check=True)
+
+    generated_project_dir = PROJECT_DIR / "sample" / cookiecutter_config["default_context"]["repo_name"]
+    print("Generated project directory:", generated_project_dir)
+    assert generated_project_dir.exists()
+    
