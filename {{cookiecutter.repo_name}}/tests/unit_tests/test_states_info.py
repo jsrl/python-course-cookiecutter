@@ -1,4 +1,4 @@
-"""Tests for `example_pkg.states_info`."""
+"""Tests for `{{cookiecutter.package_import_name}}.states_info`."""
 
 
 import pytest

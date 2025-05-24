@@ -1,4 +1,5 @@
-""" Test the generation of a project using cookiecutter."""
+"""Test that the cookiecutter template is valid."""
+
 from pathlib import Path
 
 
