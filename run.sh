@@ -150,7 +150,7 @@ function configure-repo {
 # args:
 #    REPO_NAME - name of the repository
 #    GITHUB_USERNAME - name of my github user, e.g. jsrl
-#    PACKAGE_IMPORT_NAME - e.g. if "exapmle_pkg" then "import example_pkg"
+#    PACKAGE_IMPORT_NAME - e.g. if "example_pkg" then "import example_pkg"
 function open-pr-with-generated-project {
     rm -rf "$REPO_NAME" ./outdir
     install
