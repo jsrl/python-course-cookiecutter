@@ -2,7 +2,7 @@
 
 
 import pytest
-from example_pkg.states_info import (
+from {{cookiecutter.package_import_name}}.states_info import (
     is_city_capitol_of_state,
     slow_add,
 )
