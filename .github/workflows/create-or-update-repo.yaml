@@ -55,7 +55,7 @@ jobs:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
           PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN }}
           REPO_NAME: ${{ github.event.inputs.repo_name }}
-          GITHUB_USERNAME: jrsl
+          GITHUB_USERNAME: jsrl
 
   open-pr-with-generated-project:
     needs: [create-repo-if-not-exists]
