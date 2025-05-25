@@ -10,12 +10,21 @@ from tests.consts import PROJECT_DIR
 
 
 def initialize_git_repo(repo_dir: Path):
-    subprocess.run(["git","init"], cwd=repo_dir, check=True)
-    subprocess.run(["git","branch","-M","main"], cwd=repo_dir, check=True)
-    subprocess.run(["git","add","--all"], cwd=repo_dir, check=True)
-    subprocess.run(["git","commit","-m","'feat: initial commit by pytest'"], cwd=repo_dir, check=True)
+    """Run git commands to make a directory into a valid git repository."""
+    subprocess.run(["git", "init"], cwd=repo_dir, check=True)
+    subprocess.run(["git", "branch", "-M", "main"], cwd=repo_dir, check=True)
+    subprocess.run(["git", "add", "--all"], cwd=repo_dir, check=True)
+    subprocess.run(["git", "commit", "-m", "'feat: initial commit by pytest'"], cwd=repo_dir, check=True)
+
 
 def generate_project(template_values: Dict[str, str], test_session_id: str):
+    """
+    Generate a boilerplate project that we can use to test the template.
+
+    :param template_values: jinja context used when populating template
+    :param test_session_id: potentially randomly generated string used to
+        ensure uniqueness of generated file names.
+    """
     template_values_deep: Dict[str, str] = deepcopy(template_values)
     cookiecutter_config = {"default_context": template_values_deep}
     cookiecutter_config_fpath = PROJECT_DIR / f"tests/cookiecutter-{test_session_id}.json"
